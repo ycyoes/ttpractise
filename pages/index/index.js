@@ -80,19 +80,15 @@ Page({
   },
 
   getUserInfo: function() {
-    let userInfo = null;
     tt.getUserInfo({
       withCredentials: true,
       success(res) {
-        userInfo = res.userInfo;
         console.log(`getUserInfo 调用成功 ${res.userInfo}`);
       },
       fail(res) {
         console.log(`getUserInfo 调用失败`);
       },
     });
-    console.log('userInfo: ', userInfo)
-    return userInfo;
   },
 
   // Custom Data
