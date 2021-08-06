@@ -1,4 +1,7 @@
 const appInstance = getApp()
+const auth = require("../../common/auth.js")
+const appId = appInstance.globalDatas.appId
+const appSecret = appInstance.globalDatas.appSecret
 
 Page({
   data: {
@@ -8,7 +11,8 @@ Page({
     console.log('Welcome to Mini Code')
     console.log(appInstance.globalDatas.hello); // I am global data
     // this.login()
-    this.getUserInfo()
+    this.getUserInfo();
+    auth.getAccessToken({appId, appSecret})
   },
   onShow: function () {
     // Do something when page show.
@@ -81,14 +85,14 @@ Page({
 
   getUserInfo: function() {
     tt.getUserInfo({
-      withCredentials: true,
-      success(res) {
-        console.log(`getUserInfo 调用成功 ${res.userInfo}`);
-      },
-      fail(res) {
-        console.log(`getUserInfo 调用失败`);
-      },
-    });
+        withCredentials: true,
+        success(res) {
+          console.log(`getUserInfo 调用成功 ${res.userInfo}`);
+        },
+        fail(res) {
+          console.log(`getUserInfo 调用失败`);
+        },
+      });
   },
 
   // Custom Data
